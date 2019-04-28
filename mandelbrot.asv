@@ -1,17 +1,15 @@
 f = @(x,c) x.^2 + c;
-iterations = 100;
+iteration = 10;
 const = 1;
-limit = 1.5;
-start = 0;
 
 x_axis = linspace(-2,2,100);
 y_axis = linspace(-2,2,100);
 
-[X,Y] = meshgrid(-2:0.01:2 ,-2:0.01:2); 
+[X,Y] = meshgrid(-2:0.1:2 ,-2:.1:2); 
 pixels = complex(X,Y);
-pixels = pixels(:);
+pix
 %Z = sqrt(X.^2 + Y.^2);
-Z = arrayfun(@(x) stable(start,2,x,limit,iterations),pixels);
+Z = stable(0,2,pixels,1,10);
 
 
 scatter(X(:),Y(:),1,Z(:));
