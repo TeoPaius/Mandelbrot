@@ -4,6 +4,7 @@ const = 1;
 limit = 1.5;
 start = 0;
 
+
 x_axis = linspace(-2,2,100);
 y_axis = linspace(-2,2,100);
 
@@ -16,4 +17,26 @@ Z = arrayfun(@(x) stable(start,2,x,limit,iterations),pixels);
 
 scatter(X(:),Y(:),1,Z(:));
 
+parfor loopVar = 1:10; fprintf("paralel %d\n", loopVar); end 
 grid();
+
+h = zoom;
+h.ActionPostCallback = @myfunction;
+h.Enable = 'on';
+
+function myfunction(obj,evd)
+    cnt = 0;
+    for i = 1:100
+        for j = 1:100
+            for k = 1:20
+                cnt = cnt +  1;
+            end
+        end
+    end
+    
+    newLim = evd.Axes.XLim;
+    fprintf('The new X-Limits are [%.2f %.2f].\n',newLim);
+    newYLim = evd.Axes.YLim;
+    fprintf('The new Y-Limits are [%.2f %.2f].\n',newYLim);
+
+end
