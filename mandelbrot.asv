@@ -17,15 +17,15 @@ afterEach(q, @callback);
 %Z = sqrt(X.^2 + Y.^2);
 %Z = arrayfun(@(x) stable(start,2,x,limit,iterations),pixels);
 
-plot(5,6, 'o');
+plot(0,0, 'o');
 hold on;
 
 %scatter(X(:),Y(:),1,Z(:));
 
-for i = 1: 1000
+for i = 1: 10
     real = randi([0 1000],1,1);
     imag = randi([0 1000],1,1);
-    parfeval(@doSmth ,1, complex(real,imag),q);
+    parfeval(@doSmth ,1, complex(i,i),q);
     
 end
 
@@ -36,6 +36,7 @@ end
 
 function callback(nr)
     nr
+    figure(fi);
     plot(nr,'o');
-    drawnow
+    hold on;
 end
